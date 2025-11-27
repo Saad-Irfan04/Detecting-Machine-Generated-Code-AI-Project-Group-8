@@ -54,14 +54,13 @@ class Vocab:
     @classmethod
     def load(cls, path: str) -> "Vocab":
         with open(path, "r", encoding="utf-8") as f:
-            token2idx = json.load(f)
+           token2idx = json.load(f)
         vocab = cls()
         vocab.token2idx = token2idx
-        vocab.idx2token = {int(v): k for k, v in token2idx.items()}
-        # ensure keys are ints
-        vocab.idx2token = {int(v): k for k, v in enumerate([None])}  
+        # Make sure idx2token keys are integers
         vocab.idx2token = {int(idx): token for token, idx in token2idx.items()}
         return vocab
+
 
 #Dataset
 class CodeDataset(Dataset):
